@@ -1,7 +1,7 @@
 using Domain.Model;
 using Domain.Abstractions;
 
-namespace Api.Infrastructure
+namespace Infrastructure
 {
     public class FakeCustomerRepository : ICustomerRepository
     {
