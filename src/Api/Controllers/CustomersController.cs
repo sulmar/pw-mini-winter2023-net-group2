@@ -7,7 +7,12 @@ namespace Api.Customers
     [Route("api/customers")]
     public class CustomersController : ControllerBase
     {
-        private ICustomerRepository repository;
+        private readonly ICustomerRepository repository;
+
+        public CustomersController(ICustomerRepository repository)
+        {
+            this.repository = repository;
+        }
 
         // GET api/customers
 
