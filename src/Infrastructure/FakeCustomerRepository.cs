@@ -28,6 +28,11 @@ namespace Infrastructure
         {
             throw new NotImplementedException();
         }
+
+        public void Add(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
     }
     
 }

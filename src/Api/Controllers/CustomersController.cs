@@ -19,14 +19,29 @@ namespace Api.Customers
         [HttpGet]
         public ActionResult<List<Customer>> Get()
         {
-            var customers = new List<Customer>
-            {
-                new Customer { Id = 1, FirstName = "John", LastName = "Smith"},
-                new Customer { Id = 2, FirstName = "Bob", LastName = "Smith"},
-                new Customer { Id = 3, FirstName = "Kate", LastName = "Smith"},
-            };
+            var customers = repository.GetAll();
 
             return Ok(customers);
+        }
+        
+        // GET api/customers/{id}
+        [HttpGet("{id}", Name = "GetCustomerById")]
+        public ActionResult<Customer> Get(int id)
+        {
+            var customer = repository.GetById(id);
+
+            if (customer == null)
+                return NotFound();
+
+            return Ok(customer);
+        }
+
+        [HttpPost]
+        public ActionResult<Customer> Post([FromBody] Customer customer)
+        {
+            repository.Add(customer);
+
+            return CreatedAtRoute("GetCustomerById", new { Id = customer.Id} , customer);
         }
     }
     
