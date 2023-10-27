@@ -17,7 +17,7 @@ builder.Services.AddScoped<ICustomerRepository, DbCustomerRepository>();
 builder.Services.AddDbContextFactory<ShopperContext>(options =>
     options.UseSqlite("Data Source=shopper.db"));
 
-builder.Services.AddHostedService<DbCreationalService>();
+// builder.Services.AddHostedService<DbCreationalService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,5 +32,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.CreateDatabase<ShopperContext>();
 
 app.Run();
